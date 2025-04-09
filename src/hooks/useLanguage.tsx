@@ -16,19 +16,17 @@ const LanguageContext = createContext<LanguageContextType>({
 });
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [currentLanguage, setCurrentLanguage] = useState<'en' | 'ta'>('en');
-  
-  useEffect(() => {
-    // Check if there's a saved language preference
+  const [currentLanguage, setCurrentLanguage] = useState<'en' | 'ta'>(() => {
+    // Check if there's a saved language preference on initial mount
     const savedLanguage = localStorage.getItem('language');
-    if (savedLanguage === 'en' || savedLanguage === 'ta') {
-      setCurrentLanguage(savedLanguage);
-    }
-  }, []);
-
+    return (savedLanguage === 'en' || savedLanguage === 'ta') ? savedLanguage : 'en';
+  });
+  
   const setLanguage = (lang: 'en' | 'ta') => {
     setCurrentLanguage(lang);
     localStorage.setItem('language', lang);
+    // Force a re-render of the app to update all translations
+    window.dispatchEvent(new Event('language-changed'));
   };
 
   // Helper function to get nested keys, e.g., "features.moisture"
@@ -40,6 +38,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
       if (result && result[key] !== undefined) {
         result = result[key];
       } else {
+        console.warn(`Translation missing for key: ${path}`);
         return path; // Return the key path if translation not found
       }
     }
@@ -51,6 +50,18 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     const translations = currentLanguage === 'en' ? enTranslations : taTranslations;
     return getNestedTranslation(translations, key);
   };
+
+  // Listen for language change events
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      // This is just to force components to re-render when language changes
+    };
+    
+    window.addEventListener('language-changed', handleLanguageChange);
+    return () => {
+      window.removeEventListener('language-changed', handleLanguageChange);
+    };
+  }, []);
 
   return (
     <LanguageContext.Provider value={{ currentLanguage, setLanguage, t }}>

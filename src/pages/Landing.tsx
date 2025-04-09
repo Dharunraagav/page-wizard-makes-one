@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowRight, Sprout, Droplet, Sun, Cloud, Flower, Eye, Heart, GlobeIcon, Languages, BookOpen, Newspaper } from "lucide-react";
+import { ArrowRight, Sprout, Droplet, Sun, Cloud, Flower, Eye, Heart, GlobeIcon, Newspaper, BookOpen } from "lucide-react";
 import LanguageSelector from '@/components/LanguageSelector';
 import { useLanguage } from '@/hooks/useLanguage';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ const Landing = () => {
       opacity: 1,
       y: 0,
       transition: { 
-        delay: 2.4 + (i * 0.1),
+        delay: 0.4 + (i * 0.1),
         duration: 0.5
       }
     })
@@ -107,24 +108,25 @@ const Landing = () => {
         </div>
       </nav>
 
-      <div className="relative w-full max-w-3xl px-4 py-10 text-center mt-8">
+      {/* Animation Hero Section */}
+      <div className="relative w-full h-screen flex flex-col items-center justify-center">
         {/* Animated Crop Field */}
         <motion.div 
-          className="relative h-48 mb-8 overflow-hidden"
+          className="relative h-64 mb-8 overflow-hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
           {/* Background elements */}
           <motion.div
-            className="absolute w-full bottom-0 h-12 bg-e-dark-accent rounded-lg opacity-70"
+            className="absolute w-full bottom-0 h-16 bg-e-dark-accent rounded-lg opacity-70"
             initial={{ scaleY: 0 }}
             animate={{ scaleY: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           />
           
           {/* Crop plants animations */}
-          <motion.div className="absolute bottom-8 w-full flex justify-center items-end">
+          <motion.div className="absolute bottom-12 w-full flex justify-center items-end">
             <motion.div 
               className="flex space-x-4 md:space-x-6"
               variants={containerVariants}
@@ -132,7 +134,7 @@ const Landing = () => {
               animate="visible"
             >
               {/* Row of plants with different heights/delays */}
-              {[...Array(7)].map((_, i) => (
+              {[...Array(9)].map((_, i) => (
                 <motion.div
                   key={i}
                   className="relative flex flex-col items-center"
@@ -257,37 +259,6 @@ const Landing = () => {
             {t('landing.tagline')}
           </motion.p>
         </div>
-        
-        {/* Animated Text */}
-        <motion.div
-          className="mb-10 space-y-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 2.0 }}
-        >
-          <p className="text-lg text-gray-300">
-            {t('landing.description')}
-          </p>
-          <motion.div
-            className="flex flex-wrap justify-center gap-6 mt-6 text-gray-400"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 2.2 }}
-          >
-            <div className="flex items-center">
-              <Droplet className="h-5 w-5 mr-2 text-e-blue" />
-              <span>{t('features.moisture')}</span>
-            </div>
-            <div className="flex items-center">
-              <Sun className="h-5 w-5 mr-2 text-e-yellow" />
-              <span>{t('features.weather')}</span>
-            </div>
-            <div className="flex items-center">
-              <Sprout className="h-5 w-5 mr-2 text-e-green" />
-              <span>{t('features.growth')}</span>
-            </div>
-          </motion.div>
-        </motion.div>
 
         {/* Call to Action Button */}
         <motion.div
@@ -302,7 +273,7 @@ const Landing = () => {
             scale: { duration: 0.5 },
             y: { duration: 2, repeat: Infinity, repeatType: "reverse" }
           }}
-          className="mt-8"
+          className="mt-12"
         >
           <Button 
             onClick={goToDashboard}
@@ -318,16 +289,13 @@ const Landing = () => {
       <motion.section 
         id="features" 
         className="w-full py-16 bg-gray-900/50"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 2.3 }}
       >
         <div className="container mx-auto px-4">
           <motion.h2 
             className="text-3xl font-bold mb-10 text-center"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 2.3 }}
+            transition={{ duration: 0.5 }}
           >
             {t('sections.features')}
           </motion.h2>
@@ -425,9 +393,6 @@ const Landing = () => {
       <motion.section 
         id="community" 
         className="w-full py-16 bg-e-dark"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 2.5 }}
       >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold mb-10 text-center">{t('sections.community')}</h2>
@@ -445,7 +410,7 @@ const Landing = () => {
                   className="bg-gray-800/40 rounded-lg p-6 hover:bg-gray-800/60 transition-all"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 2.6 + (i * 0.1), duration: 0.5 }}
+                  transition={{ delay: 0.2 + (i * 0.1), duration: 0.5 }}
                 >
                   <h4 className="text-lg font-semibold mb-2">{news.title}</h4>
                   <p className="text-gray-300 mb-4 text-sm">{news.summary}</p>
@@ -461,6 +426,16 @@ const Landing = () => {
           </div>
         </div>
       </motion.section>
+
+      {/* Footer */}
+      <footer className="w-full text-center text-gray-500 text-sm py-6 mt-auto border-t border-gray-800">
+        <p>© 2025 Kharif Knights. All rights reserved.</p>
+        <div className="flex justify-center space-x-4 mt-2">
+          <a href="#privacy" className="hover:text-gray-400">Privacy Policy</a>
+          <a href="#terms" className="hover:text-gray-400">Terms of Service</a>
+          <a href="#contact" className="hover:text-gray-400">Contact</a>
+        </div>
+      </footer>
     </div>
   );
 };

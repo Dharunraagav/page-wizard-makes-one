@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Languages } from 'lucide-react';
+import { Globe } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const LanguageSelector = () => {
@@ -15,7 +15,7 @@ const LanguageSelector = () => {
   
   return (
     <div className="flex items-center">
-      <Languages className="h-4 w-4 mr-2 text-gray-300" />
+      <Globe className="h-4 w-4 mr-2 text-gray-300" />
       <Select
         value={currentLanguage}
         onValueChange={(value) => setLanguage(value as 'en' | 'ta')}
