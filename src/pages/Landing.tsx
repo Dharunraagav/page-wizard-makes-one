@@ -3,15 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowRight, Sprout, Droplet, Sun, Cloud, Flower, Eye, Heart, GlobeIcon, Newspaper, BookOpen } from "lucide-react";
-import LanguageSelector from '@/components/LanguageSelector';
+import { ArrowRight, Sprout, Droplet, Sun, Cloud, Flower } from "lucide-react";
+import Navbar from '@/components/Navbar';
 import { useLanguage } from '@/hooks/useLanguage';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
 const Landing = () => {
   const navigate = useNavigate();
   const [animationComplete, setAnimationComplete] = useState(false);
-  const [activeFeature, setActiveFeature] = useState<'agrivision' | 'agricare' | null>(null);
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -48,65 +46,12 @@ const Landing = () => {
     visible: { opacity: 1, y: 0 }
   };
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { 
-        delay: 0.4 + (i * 0.1),
-        duration: 0.5
-      }
-    })
-  };
-
   // Letters for the animated title
   const letters = "Kharif Knights".split("");
   
-  // Agricultural news items
-  const agriNews = [
-    {
-      title: t('news.title1'),
-      summary: t('news.summary1'),
-      date: "2025-04-08"
-    },
-    {
-      title: t('news.title2'),
-      summary: t('news.summary2'),
-      date: "2025-04-07"
-    },
-    {
-      title: t('news.title3'),
-      summary: t('news.summary3'),
-      date: "2025-04-05"
-    }
-  ];
-
-  // Agricultural image cards
-  const imageCards = [
-    { title: t('cards.title1'), description: t('cards.desc1'), icon: <Sprout className="h-10 w-10 text-e-green" /> },
-    { title: t('cards.title2'), description: t('cards.desc2'), icon: <Droplet className="h-10 w-10 text-e-blue" /> },
-    { title: t('cards.title3'), description: t('cards.desc3'), icon: <Sun className="h-10 w-10 text-e-yellow" /> },
-    { title: t('cards.title4'), description: t('cards.desc4'), icon: <Cloud className="h-10 w-10 text-gray-400" /> },
-    { title: t('cards.title5'), description: t('cards.desc5'), icon: <Flower className="h-10 w-10 text-pink-400" /> },
-    { title: t('cards.title6'), description: t('cards.desc6'), icon: <BookOpen className="h-10 w-10 text-purple-400" /> }
-  ];
-
   return (
     <div className="flex flex-col items-center min-h-screen bg-e-dark text-white overflow-x-hidden">
-      <nav className="w-full p-4 flex justify-between items-center border-b border-gray-800">
-        <div className="flex items-center">
-          <h1 className="text-2xl font-bold text-e-green">Kharif Knights</h1>
-        </div>
-        <div className="flex space-x-4 items-center">
-          <a href="#features" className="text-gray-300 hover:text-white">{t('nav.features')}</a>
-          <a href="#about" className="text-gray-300 hover:text-white">{t('nav.about')}</a>
-          <a href="#community" className="text-gray-300 hover:text-white">{t('nav.community')}</a>
-          <a href="#support" className="text-gray-300 hover:text-white">{t('nav.support')}</a>
-          <LanguageSelector />
-          <Button className="bg-e-green hover:bg-e-green/90 text-black font-medium">{t('nav.signIn')}</Button>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Animation Hero Section */}
       <div className="relative w-full h-screen flex flex-col items-center justify-center">
@@ -284,158 +229,6 @@ const Landing = () => {
           </Button>
         </motion.div>
       </div>
-
-      {/* Features Section */}
-      <motion.section 
-        id="features" 
-        className="w-full py-16 bg-gray-900/50"
-      >
-        <div className="container mx-auto px-4">
-          <motion.h2 
-            className="text-3xl font-bold mb-10 text-center"
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            {t('sections.features')}
-          </motion.h2>
-          
-          <div className="flex flex-col md:flex-row gap-6 mb-16">
-            <motion.div 
-              className={`flex-1 p-6 rounded-lg cursor-pointer transition-all ${activeFeature === 'agrivision' ? 'bg-e-dark-accent border-l-4 border-e-green' : 'bg-gray-800/50 hover:bg-gray-800'}`}
-              whileHover={{ scale: 1.02 }}
-              onClick={() => setActiveFeature(activeFeature === 'agrivision' ? null : 'agrivision')}
-            >
-              <div className="flex items-center mb-4">
-                <Eye className="h-8 w-8 mr-3 text-e-green" />
-                <h3 className="text-2xl font-semibold">AgriVision</h3>
-              </div>
-              <p className="text-gray-300 mb-4">{t('features.agrivision.summary')}</p>
-              <Button variant="outline" className="border-e-green text-e-green hover:bg-e-green/10">
-                {activeFeature === 'agrivision' ? t('buttons.hide') : t('buttons.learnMore')}
-              </Button>
-            </motion.div>
-            
-            <motion.div 
-              className={`flex-1 p-6 rounded-lg cursor-pointer transition-all ${activeFeature === 'agricare' ? 'bg-e-dark-accent border-l-4 border-e-green' : 'bg-gray-800/50 hover:bg-gray-800'}`}
-              whileHover={{ scale: 1.02 }}
-              onClick={() => setActiveFeature(activeFeature === 'agricare' ? null : 'agricare')}
-            >
-              <div className="flex items-center mb-4">
-                <Heart className="h-8 w-8 mr-3 text-e-green" />
-                <h3 className="text-2xl font-semibold">AgriCare</h3>
-              </div>
-              <p className="text-gray-300 mb-4">{t('features.agricare.summary')}</p>
-              <Button variant="outline" className="border-e-green text-e-green hover:bg-e-green/10">
-                {activeFeature === 'agricare' ? t('buttons.hide') : t('buttons.learnMore')}
-              </Button>
-            </motion.div>
-          </div>
-          
-          {activeFeature === 'agrivision' && (
-            <motion.div 
-              className="bg-e-dark-accent rounded-lg p-6 mb-10"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-            >
-              <h4 className="text-xl font-semibold mb-4 text-e-green">{t('features.agrivision.title')}</h4>
-              <p className="mb-4">{t('features.agrivision.description')}</p>
-              <ul className="list-disc pl-6 space-y-2 text-gray-300">
-                <li>{t('features.agrivision.point1')}</li>
-                <li>{t('features.agrivision.point2')}</li>
-                <li>{t('features.agrivision.point3')}</li>
-              </ul>
-            </motion.div>
-          )}
-          
-          {activeFeature === 'agricare' && (
-            <motion.div 
-              className="bg-e-dark-accent rounded-lg p-6 mb-10"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-            >
-              <h4 className="text-xl font-semibold mb-4 text-e-green">{t('features.agricare.title')}</h4>
-              <p className="mb-4">{t('features.agricare.description')}</p>
-              <ul className="list-disc pl-6 space-y-2 text-gray-300">
-                <li>{t('features.agricare.point1')}</li>
-                <li>{t('features.agricare.point2')}</li>
-                <li>{t('features.agricare.point3')}</li>
-              </ul>
-            </motion.div>
-          )}
-
-          {/* Card Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-            {imageCards.map((card, i) => (
-              <motion.div
-                key={i}
-                className="bg-gray-800/60 rounded-lg p-5 flex flex-col items-center text-center hover:bg-gray-800 transition-all"
-                variants={cardVariants}
-                initial="hidden"
-                animate="visible"
-                custom={i}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              >
-                <div className="mb-4 p-3 bg-e-dark rounded-full">
-                  {card.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
-                <p className="text-gray-300">{card.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Community Section with News */}
-      <motion.section 
-        id="community" 
-        className="w-full py-16 bg-e-dark"
-      >
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-10 text-center">{t('sections.community')}</h2>
-          
-          <div className="flex flex-col mb-12">
-            <h3 className="text-2xl font-semibold mb-6 flex items-center">
-              <Newspaper className="h-6 w-6 mr-2 text-e-green" />
-              {t('sections.agriNews')}
-            </h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {agriNews.map((news, i) => (
-                <motion.div
-                  key={i}
-                  className="bg-gray-800/40 rounded-lg p-6 hover:bg-gray-800/60 transition-all"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 + (i * 0.1), duration: 0.5 }}
-                >
-                  <h4 className="text-lg font-semibold mb-2">{news.title}</h4>
-                  <p className="text-gray-300 mb-4 text-sm">{news.summary}</p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs text-gray-400">{news.date}</span>
-                    <Button variant="link" className="text-e-green p-0 h-auto">
-                      {t('buttons.readMore')}
-                    </Button>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Footer */}
-      <footer className="w-full text-center text-gray-500 text-sm py-6 mt-auto border-t border-gray-800">
-        <p>© 2025 Kharif Knights. All rights reserved.</p>
-        <div className="flex justify-center space-x-4 mt-2">
-          <a href="#privacy" className="hover:text-gray-400">Privacy Policy</a>
-          <a href="#terms" className="hover:text-gray-400">Terms of Service</a>
-          <a href="#contact" className="hover:text-gray-400">Contact</a>
-        </div>
-      </footer>
     </div>
   );
 };

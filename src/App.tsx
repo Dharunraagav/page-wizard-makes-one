@@ -21,6 +21,10 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/dashboard" element={<Index />} />
+            <Route path="/features" element={<Index />} /> {/* Temporarily using Index component */}
+            <Route path="/about" element={<Index />} /> {/* Temporarily using Index component */}
+            <Route path="/community" element={<Index />} /> {/* Temporarily using Index component */}
+            <Route path="/support" element={<Index />} /> {/* Temporarily using Index component */}
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
