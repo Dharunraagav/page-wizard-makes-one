@@ -9,7 +9,9 @@ export const enTranslations = {
   },
   landing: {
     tagline: "Smart Farming Solutions",
-    description: "Transforming agriculture with intelligent monitoring and analytics"
+    description: "Transforming agriculture with intelligent monitoring and analytics",
+    welcome: "Hi Karthick, want to know about your farming?",
+    letsGo: "Let's Go"
   },
   features: {
     moisture: "Moisture Tracking",
@@ -21,7 +23,13 @@ export const enTranslations = {
       description: "AgriVision uses cutting-edge computer vision to monitor your crops remotely, providing data-driven insights about crop health, growth stages, and potential risks.",
       point1: "Real-time crop health monitoring with image recognition",
       point2: "Disease identification and early warning systems",
-      point3: "Growth pattern analysis and yield predictions"
+      point3: "Growth pattern analysis and yield predictions",
+      droneFeed: "Drone Live Feed",
+      pestDetection: "Pest Detection",
+      detected: "Detected",
+      notDetected: "Not Detected",
+      status: "Status",
+      lastUpdated: "Last Updated"
     },
     agricare: {
       title: "Farm Management Assistant",
@@ -29,7 +37,12 @@ export const enTranslations = {
       description: "AgriCare offers personalized farm management guidance, optimizing resource usage and improving crop yields through intelligent recommendations and monitoring.",
       point1: "Tailored irrigation and fertilization schedules",
       point2: "Pest management and intervention recommendations",
-      point3: "Soil health monitoring and nutrient optimization"
+      point3: "Soil health monitoring and nutrient optimization",
+      assistant: "Farming Assistant",
+      askQuestion: "Ask a question...",
+      send: "Send",
+      typing: "Typing...",
+      placeholder: "Ask anything about farming techniques..."
     }
   },
   sections: {

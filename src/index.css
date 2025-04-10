@@ -46,3 +46,43 @@
     @apply bg-e-dark text-foreground;
   }
 }
+
+:root {
+  --e-dark: #10141e;
+  --e-dark-accent: #161a26;
+  --e-green: #36d399;
+  --e-blue: #38bdf8;
+  --e-yellow: #fbbf24;
+}
+
+.bg-e-dark {
+  background-color: var(--e-dark);
+}
+
+.bg-e-dark-accent {
+  background-color: var(--e-dark-accent);
+}
+
+.text-e-green {
+  color: var(--e-green);
+}
+
+.bg-e-green {
+  background-color: var(--e-green);
+}
+
+.text-e-blue {
+  color: var(--e-blue);
+}
+
+.bg-e-blue {
+  background-color: var(--e-blue);
+}
+
+.text-e-yellow {
+  color: var(--e-yellow);
+}
+
+.bg-e-yellow {
+  background-color: var(--e-yellow);
+}

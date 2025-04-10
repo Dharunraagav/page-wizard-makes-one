@@ -1,17 +1,36 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import { motion } from "framer-motion";
-import { Eye, LineChart, Camera, Brain, Leaf } from "lucide-react";
+import { Eye, LineChart, Camera, Brain, Leaf, Bug, BugOff, RefreshCw } from "lucide-react";
 import { useLanguage } from '@/hooks/useLanguage';
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 const AgriVision = () => {
   const { t } = useLanguage();
+  const [pestDetected, setPestDetected] = useState<boolean | null>(null);
+  const [lastUpdated, setLastUpdated] = useState<string>(new Date().toLocaleTimeString());
+
+  // Simulate random pest detection
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const detected = Math.random() > 0.5;
+      setPestDetected(detected);
+      setLastUpdated(new Date().toLocaleTimeString());
+    }, 10000); // Update every 10 seconds
+    
+    return () => clearInterval(timer);
+  }, []);
+  
+  const handleRefresh = () => {
+    setPestDetected(Math.random() > 0.5);
+    setLastUpdated(new Date().toLocaleTimeString());
+  };
   
   return (
     <div className="min-h-screen bg-e-dark text-white">
       <Navbar />
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -20,55 +39,132 @@ const AgriVision = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-center mb-4">
             <span className="text-e-green">Agri</span>Vision
           </h1>
-          <p className="text-xl text-gray-300 text-center mb-16 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 text-center mb-10 max-w-3xl mx-auto">
             Advanced image recognition and analytics for modern farming
           </p>
         </motion.div>
 
-        {/* Hero Section */}
-        <div className="grid md:grid-cols-2 gap-10 mb-20 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <h2 className="text-3xl font-bold mb-6">See Your Farm in a New Light</h2>
-            <p className="text-gray-300 mb-6 text-lg">
-              AgriVision uses cutting-edge computer vision technology to analyze crops, 
-              detect diseases early, and optimize growing conditions through intelligent image processing.
-            </p>
-            <div className="flex items-center gap-4 mb-4">
-              <Camera className="text-e-green h-6 w-6" />
-              <span>Advanced image capture capabilities</span>
-            </div>
-            <div className="flex items-center gap-4 mb-4">
-              <Brain className="text-e-green h-6 w-6" />
-              <span>AI-powered disease detection</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <Leaf className="text-e-green h-6 w-6" />
-              <span>Growth pattern analysis and prediction</span>
-            </div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="bg-e-dark-accent p-8 rounded-xl flex justify-center"
-          >
-            <div className="relative h-80 w-80">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Eye className="h-32 w-32 text-e-green opacity-30" />
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="h-64 w-64 rounded-full border-2 border-e-green/30 animate-pulse" />
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="h-48 w-48 rounded-full border border-e-green/20 animate-[pulse_3s_ease-in-out_infinite]" />
+        {/* Drone Live Feed Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mb-10"
+        >
+          <h2 className="text-2xl font-bold mb-6 flex items-center">
+            <Camera className="mr-2 text-e-green" /> {t('features.agrivision.droneFeed')}
+          </h2>
+          
+          <div className="bg-e-dark-accent rounded-xl overflow-hidden">
+            <div className="relative">
+              {/* Simulated drone feed - replace with actual video component if available */}
+              <div className="aspect-video bg-black relative">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <img 
+                    src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=2070&auto=format&fit=crop"
+                    alt="Farm Aerial View"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                
+                {/* Overlay with camera UI elements */}
+                <div className="absolute top-0 left-0 right-0 p-4 flex justify-between">
+                  <Badge variant="outline" className="bg-black/50 text-white">LIVE</Badge>
+                  <Badge variant="outline" className="bg-black/50 text-white">Drone #1</Badge>
+                </div>
+                
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <Badge variant="outline" className="bg-black/50 text-white">Field #3 - Northeast Corner</Badge>
+                </div>
               </div>
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
+        
+        {/* Pest Detection Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mb-16"
+        >
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold flex items-center">
+              <Bug className="mr-2 text-e-green" /> {t('features.agrivision.pestDetection')}
+            </h2>
+            <button 
+              onClick={handleRefresh} 
+              className="flex items-center gap-2 bg-e-dark-accent hover:bg-e-dark-accent/90 text-white px-3 py-2 rounded-md"
+            >
+              <RefreshCw className="h-4 w-4" /> Refresh
+            </button>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card className="bg-e-dark-accent text-white border-gray-800">
+              <CardHeader>
+                <CardTitle className="flex items-center justify-between">
+                  <span>{t('features.agrivision.status')}</span>
+                  <Badge 
+                    className={pestDetected ? "bg-red-500" : "bg-green-500"}
+                  >
+                    {pestDetected ? (
+                      <span className="flex items-center gap-1">
+                        <Bug className="h-3 w-3" /> {t('features.agrivision.detected')}
+                      </span>
+                    ) : (
+                      <span className="flex items-center gap-1">
+                        <BugOff className="h-3 w-3" /> {t('features.agrivision.notDetected')}
+                      </span>
+                    )}
+                  </Badge>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-sm text-gray-300">
+                  {t('features.agrivision.lastUpdated')}: {lastUpdated}
+                </div>
+                
+                <div className="mt-4">
+                  {pestDetected ? (
+                    <div className="p-3 bg-red-500/20 border border-red-500/30 rounded-md">
+                      <p className="font-medium">Potential aphid infestation detected on crop leaves.</p>
+                      <p className="text-sm mt-2">Recommended action: Inspect field section G3 and consider organic pesticide application.</p>
+                    </div>
+                  ) : (
+                    <div className="p-3 bg-green-500/20 border border-green-500/30 rounded-md">
+                      <p className="font-medium">No pest activity detected in the current frame.</p>
+                      <p className="text-sm mt-2">Continuing scheduled monitoring. Next comprehensive scan in 2 hours.</p>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-e-dark-accent text-white border-gray-800">
+              <CardHeader>
+                <CardTitle>Analysis</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="aspect-square bg-black/40 rounded-md flex items-center justify-center">
+                  {pestDetected ? (
+                    <img 
+                      src="https://images.unsplash.com/photo-1634138235766-abe63ac2bc0d?q=80&w=1965&auto=format&fit=crop"
+                      alt="Pest Detection"
+                      className="w-full h-full object-cover rounded-md"
+                    />
+                  ) : (
+                    <img 
+                      src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=2070&auto=format&fit=crop"
+                      alt="Healthy Plants"
+                      className="w-full h-full object-cover rounded-md"
+                    />
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </motion.div>
 
         {/* Features Section */}
         <div className="mb-20">
