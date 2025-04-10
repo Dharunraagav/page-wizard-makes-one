@@ -8,6 +8,10 @@ import Landing from "./pages/Landing";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { LanguageProvider } from "./hooks/useLanguage";
+import Features from "./pages/Features";
+import About from "./pages/About";
+import Community from "./pages/Community";
+import Support from "./pages/Support";
 
 const queryClient = new QueryClient();
 
@@ -21,10 +25,10 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/dashboard" element={<Index />} />
-            <Route path="/features" element={<Index />} /> {/* Temporarily using Index component */}
-            <Route path="/about" element={<Index />} /> {/* Temporarily using Index component */}
-            <Route path="/community" element={<Index />} /> {/* Temporarily using Index component */}
-            <Route path="/support" element={<Index />} /> {/* Temporarily using Index component */}
+            <Route path="/features" element={<Features />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/community" element={<Community />} />
+            <Route path="/support" element={<Support />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

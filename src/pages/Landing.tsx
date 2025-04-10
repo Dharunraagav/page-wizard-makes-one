@@ -1,16 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowRight, Sprout, Droplet, Sun, Cloud, Flower } from "lucide-react";
+import { Sprout, Droplet, Sun, Cloud, Flower } from "lucide-react";
 import Navbar from '@/components/Navbar';
-import { useLanguage } from '@/hooks/useLanguage';
 
 const Landing = () => {
-  const navigate = useNavigate();
   const [animationComplete, setAnimationComplete] = useState(false);
-  const { t } = useLanguage();
 
   useEffect(() => {
     // Set animation to complete after initial animations
@@ -19,10 +14,6 @@ const Landing = () => {
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
-
-  const goToDashboard = () => {
-    navigate('/dashboard');
-  };
 
   // Animation variants
   const containerVariants = {
@@ -195,39 +186,7 @@ const Landing = () => {
               ))}
             </div>
           </motion.div>
-          <motion.p 
-            className="text-xl text-gray-300"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.8 }}
-          >
-            {t('landing.tagline')}
-          </motion.p>
         </div>
-
-        {/* Call to Action Button */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ 
-            opacity: animationComplete ? 1 : 0,
-            scale: animationComplete ? 1 : 0.8,
-            y: animationComplete ? [0, -5, 0] : 0,
-          }}
-          transition={{ 
-            opacity: { duration: 0.5 },
-            scale: { duration: 0.5 },
-            y: { duration: 2, repeat: Infinity, repeatType: "reverse" }
-          }}
-          className="mt-12"
-        >
-          <Button 
-            onClick={goToDashboard}
-            className="bg-e-green hover:bg-e-green/80 text-black px-8 py-6 text-lg rounded-full flex items-center space-x-2 transition-transform transform hover:scale-105"
-          >
-            <span>{t('buttons.letsGo')}</span>
-            <ArrowRight className="ml-2" />
-          </Button>
-        </motion.div>
       </div>
     </div>
   );
