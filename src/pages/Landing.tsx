@@ -1,11 +1,15 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
-import { Sprout, Droplet, Sun, Cloud, Flower } from "lucide-react";
-import Navbar from '@/components/Navbar';
+import { Sprout, Droplet, Sun, Cloud, Flower, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+import { useLanguage } from '@/hooks/useLanguage';
 
 const Landing = () => {
   const [animationComplete, setAnimationComplete] = useState(false);
+  const navigate = useNavigate();
+  const { t } = useLanguage();
 
   useEffect(() => {
     // Set animation to complete after initial animations
@@ -42,8 +46,6 @@ const Landing = () => {
   
   return (
     <div className="flex flex-col items-center min-h-screen bg-e-dark text-white overflow-x-hidden">
-      <Navbar />
-
       {/* Animation Hero Section */}
       <div className="relative w-full h-screen flex flex-col items-center justify-center">
         {/* Animated Crop Field */}
@@ -160,7 +162,7 @@ const Landing = () => {
         </motion.div>
         
         {/* Animated Title with Letter Animation */}
-        <div className="mb-3">
+        <div className="mb-10">
           <motion.div 
             className="flex justify-center mb-2"
             initial={{ opacity: 0 }}
@@ -187,6 +189,24 @@ const Landing = () => {
             </div>
           </motion.div>
         </div>
+        
+        {/* Welcome Message */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2.5, duration: 0.8 }}
+          className="text-center mb-12 px-4"
+        >
+          <h2 className="text-2xl md:text-3xl font-medium text-gray-200 mb-6">
+            Hi Karthick, want to know about your farming?
+          </h2>
+          <Button 
+            onClick={() => navigate('/dashboard')} 
+            className="bg-e-green hover:bg-e-green/90 text-black font-semibold text-lg py-6 px-8 rounded-lg flex items-center gap-2 transition-all transform hover:scale-105"
+          >
+            Let's Go <ArrowRight className="ml-1" />
+          </Button>
+        </motion.div>
       </div>
     </div>
   );

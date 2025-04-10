@@ -9,6 +9,8 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { LanguageProvider } from "./hooks/useLanguage";
 import Features from "./pages/Features";
+import AgriVision from "./pages/AgriVision";
+import AgriCare from "./pages/AgriCare";
 import About from "./pages/About";
 import Community from "./pages/Community";
 import Support from "./pages/Support";
@@ -26,6 +28,8 @@ const App = () => (
             <Route path="/" element={<Landing />} />
             <Route path="/dashboard" element={<Index />} />
             <Route path="/features" element={<Features />} />
+            <Route path="/agrivision" element={<AgriVision />} />
+            <Route path="/agricare" element={<AgriCare />} />
             <Route path="/about" element={<About />} />
             <Route path="/community" element={<Community />} />
             <Route path="/support" element={<Support />} />
