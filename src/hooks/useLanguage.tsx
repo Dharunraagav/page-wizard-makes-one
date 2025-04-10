@@ -25,7 +25,9 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const setLanguage = (lang: 'en' | 'ta') => {
     setCurrentLanguage(lang);
     localStorage.setItem('language', lang);
-    // Force a re-render of the app to update all translations
+    // Force a re-render of components that use the translation hook
+    document.documentElement.setAttribute('lang', lang);
+    // Dispatch an event that components can listen for
     window.dispatchEvent(new Event('language-changed'));
   };
 
@@ -51,17 +53,23 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     return getNestedTranslation(translations, key);
   };
 
-  // Listen for language change events
+  // Initialize language attribute on document
+  useEffect(() => {
+    document.documentElement.setAttribute('lang', currentLanguage);
+  }, [currentLanguage]);
+
+  // Listen for language change events to force re-renders
   useEffect(() => {
     const handleLanguageChange = () => {
       // This is just to force components to re-render when language changes
+      console.log("Language changed to:", currentLanguage);
     };
     
     window.addEventListener('language-changed', handleLanguageChange);
     return () => {
       window.removeEventListener('language-changed', handleLanguageChange);
     };
-  }, []);
+  }, [currentLanguage]);
 
   return (
     <LanguageContext.Provider value={{ currentLanguage, setLanguage, t }}>
