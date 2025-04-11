@@ -28,7 +28,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     // Force a re-render of components that use the translation hook
     document.documentElement.setAttribute('lang', lang);
     // Dispatch an event that components can listen for
-    window.dispatchEvent(new Event('language-changed'));
+    window.dispatchEvent(new CustomEvent('language-changed'));
   };
 
   // Helper function to get nested keys, e.g., "features.moisture"
@@ -58,7 +58,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     document.documentElement.setAttribute('lang', currentLanguage);
   }, [currentLanguage]);
 
-  // Listen for language change events to force re-renders
+  // Force re-render when language changes
   useEffect(() => {
     const handleLanguageChange = () => {
       // This is just to force components to re-render when language changes

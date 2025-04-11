@@ -16,8 +16,8 @@ const LanguageSelector = () => {
   const handleLanguageChange = (value: string) => {
     if (value === 'en' || value === 'ta') {
       setLanguage(value);
-      // Force a page refresh to ensure all components are updated
-      window.dispatchEvent(new Event('language-changed'));
+      // Force a re-render of the entire application
+      window.dispatchEvent(new CustomEvent('language-changed'));
     }
   };
   
