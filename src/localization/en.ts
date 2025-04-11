@@ -1,4 +1,3 @@
-
 export const enTranslations = {
   nav: {
     features: "Features",
@@ -45,6 +44,83 @@ export const enTranslations = {
       placeholder: "Ask anything about farming techniques..."
     }
   },
+  dashboard: {
+    title: "Farm Dashboard",
+    date: "Friday, 11 April 2025",
+    daysUntilHarvest: "25 days until harvest",
+    crop: "Crop",
+    addNewCrop: "Add New Crop",
+    growthProgress: "Growth Progress",
+    stages: {
+      germination: "Germination",
+      vegetative: "Vegetative",
+      flowering: "Flowering",
+      mature: "Mature"
+    },
+    npk: {
+      nitrogen: "Nitrogen",
+      phosphorus: "Phosphorus",
+      potassium: "Potassium",
+      level: "Current Level",
+      nitrogenDesc: "Essential for leaf growth and chlorophyll production",
+      phosphorusDesc: "Promotes root development and flower formation",
+      potassiumDesc: "Strengthens plants and improves water retention"
+    },
+    metrics: {
+      temperature: "Temperature",
+      humidity: "Humidity",
+      soilMoisture: "Soil Moisture",
+      lastUpdated: "10 mins ago"
+    },
+    weather: {
+      title: "Weather",
+      subtitle: "Madurai, Tamil Nadu",
+      today: "Today",
+      tue: "Tue",
+      wed: "Wed",
+      thu: "Thu",
+      fri: "Fri",
+      wind: "Wind Speed",
+      chanceOfRain: "Chance of Rain"
+    },
+    forecast: {
+      title: "Crop Forecast",
+      subtitle: "Cotton (BT Cotton)",
+      estimatedYield: "Estimated Yield",
+      yieldChange: "+5% from last season",
+      harvestTimeline: "Harvest Timeline",
+      planting: "Planting",
+      today: "Today",
+      harvest: "Harvest",
+      marketPriceForecast: "Market Price Forecast"
+    },
+    cropMetrics: "Crop Metrics",
+    recommendations: {
+      title: "Recommendations",
+      subtitle: "Based on current conditions",
+      irrigationNeeded: "Irrigation Needed",
+      irrigationDescription: "Soil moisture level is below optimal. Schedule irrigation within the next 24 hours.",
+      scheduleIrrigation: "Schedule Irrigation",
+      optimalSunlight: "Optimal Sunlight",
+      optimalSunlightDescription: "Current sunlight levels are optimal for cotton growth.",
+      fertilizerApplication: "Fertilizer Application",
+      fertilizerDescription: "Apply nitrogen-rich fertilizer to promote vegetative growth.",
+      viewFertilizerGuide: "View Fertilizer Guide",
+      pestAlert: "Pest Alert",
+      pestDescription: "Early signs of aphid infestation detected. Consider treatment options.",
+      viewTreatmentOptions: "View Treatment Options"
+    },
+    activityFeed: {
+      title: "Farm Activity",
+      subtitle: "Recent activities on your farm",
+      irrigationSystemActivated: "Irrigation System Activated",
+      temperatureAlert: "Temperature Alert",
+      rainDetected: "Rain Detected",
+      pestDetectionAlert: "Pest Detection Alert",
+      time: "2 hours ago",
+      description: "Automatic action taken based on sensor readings"
+    }
+  },
   sections: {
     features: "Our Features",
     community: "Community",
@@ -77,5 +153,11 @@ export const enTranslations = {
     summary2: "Farmers across the country are adopting regenerative agriculture techniques for long-term soil health.",
     title3: "Smart Agriculture Tech Investment Reaches New High",
     summary3: "Venture capital investment in agricultural technology startups hit $8.7 billion in the first quarter."
+  },
+  footer: {
+    rights: "All Rights Reserved",
+    privacy: "Privacy Policy",
+    terms: "Terms of Use",
+    contact: "Contact Us"
   }
 };
