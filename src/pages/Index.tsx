@@ -23,7 +23,7 @@ import {
   Bug,
   Droplets,
   Zap,
-  Flask
+  Beaker
 } from "lucide-react";
 import { useLanguage } from '@/hooks/useLanguage';
 
@@ -96,7 +96,7 @@ const Index = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           <div className="bg-e-dark-accent rounded-lg p-5">
             <div className="flex items-center mb-3">
-              <Flask className="h-6 w-6 mr-2 text-e-green" />
+              <Beaker className="h-6 w-6 mr-2 text-e-green" />
               <h2 className="text-xl font-medium">{t('dashboard.npk.nitrogen')}</h2>
             </div>
             <div className="flex justify-between items-center mb-2">
@@ -111,7 +111,7 @@ const Index = () => {
           
           <div className="bg-e-dark-accent rounded-lg p-5">
             <div className="flex items-center mb-3">
-              <Flask className="h-6 w-6 mr-2 text-e-blue" />
+              <Beaker className="h-6 w-6 mr-2 text-e-blue" />
               <h2 className="text-xl font-medium">{t('dashboard.npk.phosphorus')}</h2>
             </div>
             <div className="flex justify-between items-center mb-2">
@@ -126,7 +126,7 @@ const Index = () => {
           
           <div className="bg-e-dark-accent rounded-lg p-5">
             <div className="flex items-center mb-3">
-              <Flask className="h-6 w-6 mr-2 text-e-yellow" />
+              <Beaker className="h-6 w-6 mr-2 text-e-yellow" />
               <h2 className="text-xl font-medium">{t('dashboard.npk.potassium')}</h2>
             </div>
             <div className="flex justify-between items-center mb-2">
