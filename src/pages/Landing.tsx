@@ -201,7 +201,7 @@ const Landing = () => {
             Hi Karthick, want to know about your farming?
           </h2>
           <Button 
-            onClick={() => navigate('/dashboard')} 
+            onClick={() => navigate('/login')} 
             className="bg-e-green hover:bg-e-green/90 text-black font-semibold text-lg py-6 px-8 rounded-lg flex items-center gap-2 transition-all transform hover:scale-105"
           >
             Let's Go <ArrowRight className="ml-1" />
