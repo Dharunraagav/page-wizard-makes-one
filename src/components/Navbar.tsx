@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <nav className="flex items-center justify-between p-4 border-b border-gray-800">
       <div className="flex items-center">
-        <Link to="/" className="text-2xl font-bold text-e-green">Kharif Knights</Link>
+        <Link to="/login" className="text-2xl font-bold text-e-green">Kharif Knights</Link>
       </div>
       <div className="flex space-x-4 items-center">
         <Link to="/features" className="text-gray-300 hover:text-white">{t('nav.features')}</Link>
@@ -21,7 +21,10 @@ const Navbar = () => {
         <Link to="/support" className="text-gray-300 hover:text-white">{t('nav.support')}</Link>
         <div className="flex items-center ml-6 space-x-3">
           <LanguageSelector />
-          <Button className="bg-e-green hover:bg-e-green/90 text-black font-medium">
+          <Button 
+            onClick={() => navigate('/login')} 
+            className="bg-e-green hover:bg-e-green/90 text-black font-medium"
+          >
             {t('nav.signIn')}
           </Button>
         </div>

@@ -38,8 +38,8 @@ const Login = () => {
           description: t('login.successMessage'),
         });
         
-        // Navigate to dashboard
-        navigate('/dashboard');
+        // Navigate to welcome page first
+        navigate('/welcome');
       } else {
         toast({
           title: t('login.errorTitle'),
